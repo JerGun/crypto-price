@@ -1,3 +1,5 @@
+import React  from 'react';
+
 import logo from "./logo.svg";
 import down from "./assets/down.svg";
 import arrowDown from "./assets/arrow-down.svg";
