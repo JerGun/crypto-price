@@ -1,0 +1,22 @@
+<svg
+  width="22"
+  height="20"
+  viewBox="0 0 22 20"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+    <path
+    d="M5 1L1 5M5 1V19V1ZM5 1L9 5L5 1Z"
+    stroke="white"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+    <path
+    d="M17 19L13 15M17 19V1V19ZM17 19L21 15L17 19Z"
+    stroke="white"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+    </svg>
