@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/crypto-price/static/css/main.3173f201.css",
-    "main.js": "/crypto-price/static/js/main.42aa7fb9.js",
-    "static/js/787.e3368500.chunk.js": "/crypto-price/static/js/787.e3368500.chunk.js",
-    "static/media/logo.svg": "/crypto-price/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/crypto-price/index.html",
-    "static/media/caret-up.svg": "/crypto-price/static/media/caret-up.5b805423896d559c4472b5ed2a480336.svg",
-    "static/media/caret-down.svg": "/crypto-price/static/media/caret-down.3f0bf08fec358403591c6d31d8b0a3f3.svg",
-    "static/media/swap.svg": "/crypto-price/static/media/swap.43641dfd1a1ee0929998f76aeb0ded5c.svg",
-    "static/media/arrow-down.svg": "/crypto-price/static/media/arrow-down.ed983636c1097080f61441f8a5762751.svg",
-    "static/media/down.svg": "/crypto-price/static/media/down.7777287a16037556f191bc4c6854190f.svg",
-    "main.3173f201.css.map": "/crypto-price/static/css/main.3173f201.css.map",
-    "main.42aa7fb9.js.map": "/crypto-price/static/js/main.42aa7fb9.js.map",
-    "787.e3368500.chunk.js.map": "/crypto-price/static/js/787.e3368500.chunk.js.map"
+    "main.css": "/static/css/main.3173f201.css",
+    "main.js": "/static/js/main.eb18282b.js",
+    "static/js/787.e3368500.chunk.js": "/static/js/787.e3368500.chunk.js",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "static/media/caret-up.svg": "/static/media/caret-up.5b805423896d559c4472b5ed2a480336.svg",
+    "static/media/caret-down.svg": "/static/media/caret-down.3f0bf08fec358403591c6d31d8b0a3f3.svg",
+    "static/media/swap.svg": "/static/media/swap.43641dfd1a1ee0929998f76aeb0ded5c.svg",
+    "static/media/arrow-down.svg": "/static/media/arrow-down.ed983636c1097080f61441f8a5762751.svg",
+    "static/media/down.svg": "/static/media/down.7777287a16037556f191bc4c6854190f.svg",
+    "main.3173f201.css.map": "/static/css/main.3173f201.css.map",
+    "main.eb18282b.js.map": "/static/js/main.eb18282b.js.map",
+    "787.e3368500.chunk.js.map": "/static/js/787.e3368500.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3173f201.css",
-    "static/js/main.42aa7fb9.js"
+    "static/js/main.eb18282b.js"
   ]
 }
