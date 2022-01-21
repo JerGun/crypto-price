@@ -13,7 +13,7 @@ function App() {
   const [syncDate, setSyncDate] = useState();
   const [syncTime, setSyncTime] = useState();
   const [firstToken, setFirstToken] = useState("btc");
-  const [secondToken, setSecondToken] = useState("eth");
+  const [secondToken, setSecondToken] = useState("thb");
   const [firstValue, setFirstValue] = useState();
   const [secondValue, setSecondValue] = useState();
   const [input, setInput] = useState();
@@ -109,7 +109,7 @@ function App() {
     <div className="h-screen w-screen flex items-center justify-center bg-background">
       <div className="h-11/12 w-11/12 flex justify-between">
         <div className="h-fit w-3/4 flex flex-wrap">
-          {data?.slice(0,-1).map((item, i) => (
+          {data?.slice(0, -2).map((item, i) => (
             <div
               key={i}
               className="h-fit w-72 p-5 m-5 rounded-2xl space-y-1 shadow-lg text-white bg-input"
@@ -161,7 +161,7 @@ function App() {
                         <img
                           src={require(`./assets/${firstToken}.svg`)}
                           className="h-6 w-6"
-                          alt="logo"
+                          alt={firstToken}
                         />
                         <p className="uppercase">{firstToken}</p>
                         <ChevronDownIcon
@@ -181,7 +181,7 @@ function App() {
                         <Listbox.Options className="absolute left-0 z-50 w-full mt-3 origin-top-right bg-sub-text rounded-xl shadow-lg">
                           <div className="h-80 px-1 py-1 ">
                             <Scrollbars>
-                              {data?.map((item, i) => (
+                              {data?.slice(0, -1).map((item, i) => (
                                 <Listbox.Option
                                   key={i}
                                   value={item.id}
@@ -226,7 +226,7 @@ function App() {
                 </div>
                 <input
                   type="number"
-                  className="w-full p-3 rounded-xl shadow-md bg-hover"
+                  className="w-full p-3 rounded-xl shadow-md text-center bg-hover"
                   onChange={handleChange}
                   value={firstValue}
                 />
@@ -264,7 +264,7 @@ function App() {
                         <Listbox.Options className="absolute left-0 w-full mt-3 origin-top-right bg-sub-text rounded-xl shadow-lg">
                           <div className="h-80 px-1 py-1 ">
                             <Scrollbars>
-                              {data?.map((item, i) => (
+                              {data?.slice(0, -1).map((item, i) => (
                                 <Listbox.Option
                                   key={i}
                                   value={item.id}
@@ -309,7 +309,7 @@ function App() {
                 </div>
                 <input
                   type="number"
-                  className="w-full p-3 rounded-xl shadow-md bg-hover"
+                  className="w-full p-3 rounded-xl shadow-md text-center bg-hover"
                   value={secondValue}
                   disabled
                 />
