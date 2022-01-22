@@ -17,6 +17,8 @@ function App() {
   const [firstValue, setFirstValue] = useState();
   const [secondValue, setSecondValue] = useState();
   const [input, setInput] = useState();
+  const [pageAmount, setPageAmount] = useState();
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     syncData();
@@ -25,7 +27,6 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       syncData();
-      console.log("Logs every minute");
     }, 60000);
     return () => clearInterval(interval);
   }, []);
@@ -34,7 +35,7 @@ function App() {
     compare(input);
   }, [firstToken, secondToken]);
 
-  const syncData = () => {
+  const syncData = async () => {
     var currentdate = new Date();
     var date =
       currentdate.getDate() +
@@ -51,7 +52,7 @@ function App() {
     setSyncDate(date);
     setSyncTime(time);
 
-    fetch("https://jergun-bot.herokuapp.com/all", {
+    await fetch("https://jergun-bot.herokuapp.com/all", {
       mode: "cors",
     })
       .then((response) => {
@@ -62,6 +63,7 @@ function App() {
       })
       .then((result) => {
         setData(result);
+        setPageAmount(Math.ceil(result.length / 9));
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -100,53 +102,74 @@ function App() {
 
   const swapClick = () => {
     var tempToken = firstToken;
-    var tempValue = firstValue;
     setFirstToken(secondToken);
     setSecondToken(tempToken);
+  };
+
+  const handlePage = (i) => {
+    setCurrentPage(i);
   };
 
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-background">
       <div className="h-11/12 w-11/12 flex justify-between">
-        <div className="h-fit w-3/4 flex flex-wrap">
-          {data?.slice(0, -2).map((item, i) => (
-            <div
-              key={i}
-              className="h-fit w-72 p-5 m-5 rounded-2xl space-y-1 shadow-lg text-white bg-input"
-            >
-              <div className="flex items-center space-x-3">
-                <img
-                  key={item.id}
-                  src={require(`./assets/${item.id}.svg`)}
-                  className="h-6 w-6"
-                  alt={item.id}
-                />
-                <p className="text-2xl">
-                  {item.name} ({item.symbol})
-                </p>
-              </div>
-              <div className="flex text-3xl space-x-5">
-                <p>THB</p>
-                <p>{item.price.thb}</p>
-              </div>
-              <div className="flex items-center space-x-3">
-                <p
-                  className={
-                    parseInt(item.change) > 0
-                      ? "text-xl text-up"
-                      : "text-xl text-down"
-                  }
+        <div className="h-full w-3/4 flex flex-col justify-between">
+          <div className="flex flex-wrap">
+            {data
+              ?.slice(9 * currentPage, 9 * currentPage + 9)
+              .map((item, j) => (
+                <div
+                  key={j}
+                  className="h-fit w-72 p-5 m-5 rounded-2xl space-y-1 shadow-lg text-white bg-input"
                 >
-                  {item.change}%
-                </p>
-                {parseInt(item.change) > 0 ? (
-                  <img src={carretUp} className="h-4 w-4" alt="logo" />
-                ) : (
-                  <img src={carretDown} className="h-4 w-4" alt="logo" />
-                )}
-              </div>
-            </div>
-          ))}
+                  <div className="flex items-center space-x-3">
+                    <img
+                      key={item.id}
+                      src={require(`./assets/${item.id}.svg`)}
+                      className="h-6 w-6"
+                      alt={item.id}
+                    />
+                    <p className="text-2xl">
+                      {item.name} ({item.symbol})
+                    </p>
+                  </div>
+                  <div className="flex text-3xl space-x-5">
+                    <p>THB</p>
+                    <p>{item.price.thb}</p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <p
+                      className={
+                        parseInt(item.change) >= 0
+                          ? "text-xl text-up"
+                          : "text-xl text-down"
+                      }
+                    >
+                      {item.change}%
+                    </p>
+                    {parseInt(item.change) >= 0 ? (
+                      <img src={carretUp} className="h-4 w-4" alt="logo" />
+                    ) : (
+                      <img src={carretDown} className="h-4 w-4" alt="logo" />
+                    )}
+                  </div>
+                </div>
+              ))}
+          </div>
+          <div className="flex justify-center space-x-3 text-white">
+            {data &&
+              [...Array(pageAmount)].map((x, i) => (
+                <button
+                  key={i}
+                  className={`${
+                    currentPage === i ? "bg-primary text-black" : "bg-input"
+                  } h-14 w-14 rounded-lg shadow-md`}
+                  onClick={() => handlePage(i)}
+                >
+                  {i + 1}
+                </button>
+              ))}
+          </div>
         </div>
         <div className="h-full w-1/4 space-y-5 mt-5">
           <div className="h-fit w-full flex flex-col items-center rounded-2xl shadow-lg bg-input text-white">
@@ -181,7 +204,7 @@ function App() {
                         <Listbox.Options className="absolute left-0 z-50 w-full mt-3 origin-top-right bg-sub-text rounded-xl shadow-lg">
                           <div className="h-80 px-1 py-1 ">
                             <Scrollbars>
-                              {data?.slice(0, -1).map((item, i) => (
+                              {data?.map((item, i) => (
                                 <Listbox.Option
                                   key={i}
                                   value={item.id}
@@ -264,7 +287,7 @@ function App() {
                         <Listbox.Options className="absolute left-0 w-full mt-3 origin-top-right bg-sub-text rounded-xl shadow-lg">
                           <div className="h-80 px-1 py-1 ">
                             <Scrollbars>
-                              {data?.slice(0, -1).map((item, i) => (
+                              {data?.map((item, i) => (
                                 <Listbox.Option
                                   key={i}
                                   value={item.id}
