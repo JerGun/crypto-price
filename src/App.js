@@ -140,14 +140,14 @@ function App() {
                   <div className="flex items-center space-x-3">
                     <p
                       className={
-                        parseInt(item.change) >= 0
+                        parseFloat(item.change) >= 0
                           ? "text-xl text-up"
                           : "text-xl text-down"
                       }
                     >
                       {item.change}%
                     </p>
-                    {parseInt(item.change) >= 0 ? (
+                    {parseFloat(item.change) >= 0 ? (
                       <img src={carretUp} className="h-4 w-4" alt="logo" />
                     ) : (
                       <img src={carretDown} className="h-4 w-4" alt="logo" />
