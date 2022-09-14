@@ -1,6 +1,6 @@
 {
   "name": "crypto-price",
-  "homepage": "/crpto-price",
+  "homepage": "/crypto-price",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
